@@ -1,0 +1,90 @@
+.slider > * {	
+	border:0;
+	padding: 0;
+	margin: 0;
+	outline: 0;	
+	box-sizing: border-box;
+}
+.slider {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 100%;
+   height: 130px;
+   border: 0;   
+}
+.slider > #container {
+   position: relative;
+   display: flex;
+   overflow: hidden;
+}
+.slider > #container > #uls {
+   position: relative;
+   display: flex;
+}
+
+.slider > #container > #uls > ul {
+   position: relative;
+   display: flex;
+}
+
+.slider > #container > #uls > ul.itens {
+   transition : all 1s ease;
+}
+	
+.slider > #container > #uls > ul > li {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 200px;
+   height: 100px;
+}
+.slider > #container > #uls > ul > li > a {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 100%;
+}
+.slider > #container > #uls > ul > li > a > img {
+	height: 100%;
+}
+.slider > #title {
+	position: absolute;
+    align-items: center;
+    justify-content: center;
+	display: none;
+	width: 100px;
+	height: 30px;
+	top: 50px;
+	right: calc(50% - 25px);
+	background: #999;
+	border: 1px solid #ccc;
+}
+.slider > #controles {
+   display: flex;
+   align-items: center;
+   justify-content: center;	
+   width: 100%;
+   height: 30px;
+}
+
+.slider > #controles  > button {
+   display: flex;
+   align-items: center;
+   justify-content: center;		
+   width: 30px;
+   height: 30px;
+   cursor: pointer;
+   margin: auto 5px;
+   border-radius: 50%;
+   opacity: .2;
+}
+
+.slider > #controles  > button:hover {
+   opacity: 1;
+   border: 1x solid #ccc;
+}
