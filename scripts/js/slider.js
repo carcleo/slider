@@ -49,11 +49,15 @@ $(document).ready( function() {
 	
 	//função avançar
 	function avancar () {
+		$(controles).find("button").prop('disabled', true);
 		var primeiroLi = $("ul.itens li:first-child").clone();
 		$("ul.itens").css({
 			"transition" : "all 1s ease",
 			"margin-left" : "-"+tamanhoLi
 		});
+		setTimeout(function(){
+			$(controles).find("button").prop('disabled', false);
+		  }, 1000);
 		setTimeout(function(){
 			$("ul.itens li:first-child").remove();
 			primeiroLi.appendTo("ul.itens");
@@ -82,7 +86,7 @@ $(document).ready( function() {
 
 	//função voltar
 	function voltar () {
-
+		$(controles).find("button").prop('disabled', true);
 		var ultimoLi = $("ul.itens li:last-child").clone();
 		$("ul.itens li:last-child").remove();
 		ultimoLi.prependTo("ul.itens");
@@ -90,6 +94,9 @@ $(document).ready( function() {
 			"transition" : "none",
 			"margin-left" : "-"+tamanhoLi
 		});
+		setTimeout(function(){
+			$(controles).find("button").prop('disabled', false);
+		  }, 1000);
 		setTimeout(function(){
 			$("ul.itens").css({
 				"transition" : "all 1s ease",
@@ -120,13 +127,13 @@ $(document).ready( function() {
 	  var btn = $(this);
 	  btn.prop('disabled',true);
 	  
-	  //clearInterval(loop);
+	  clearInterval(loop);
 	  avancar();
 	  setTimeout(function(){
 		btn.removeAttr('disabled');
 	  }, 1000);
 	  
-	  //loop = setInterval( avancar, tempoIntervalo);
+	  loop = setInterval( avancar, tempoIntervalo);
 	  
 	});
 
@@ -136,19 +143,19 @@ $(document).ready( function() {
 	  var btn = $(this);
 	  btn.prop('disabled',true);
 	  
-	  //clearInterval(loop);
+	  clearInterval(loop);
 	  voltar();
 	  setTimeout(function(){
 		btn.removeAttr('disabled');
 	  }, 1000);
 	  
-	  //loop = setInterval( avancar, tempoIntervalo);
+	  loop = setInterval( avancar, tempoIntervalo);
 	  
 	});
 
 	
 	//dispara o loop na função avançar
-	//var loop = setInterval( avancar, tempoIntervalo );		
+	var loop = setInterval( avancar, tempoIntervalo );		
 
 	//para e reinicia o loop ao passar/retirar o mouse sobre o slide
 	container.mouseover(function(){
