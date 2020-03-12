@@ -5,7 +5,16 @@ $(document).ready( function() {
 		  tempoIntervalo     =   2000;
 	
 	//cria dinamicamente elementos HTML
-	$("div.slider").append('<div id="container"><div id="uls"></div></div><span id="title">Pausado</span><div id="controles"><button id="back"> < </button><button id="next"> > </button></div>');
+	$("div.slider").append(
+	      '<div id="container">' + 
+		     '<div id="uls"></div>' + 
+		  '</div>' + 
+		  '<span id="title">Pausado</span>' + 
+		  '<div id="controles">' +
+		    '<button id="back"> < </button>' + 
+			'<button id="next"> > </button>' + 
+		  '</div>'
+	);
 	
 	//cria as variáveis NÃO modificáveis;
 	var   slider             =   $("div.slider"),
