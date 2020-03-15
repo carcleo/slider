@@ -27,7 +27,7 @@ $(document).ready( function() {
 	//após essa inserção, já podemos procurar os demais itens devidamente posicionados
 	var	  ul                 =   $(uls).find("ul.itens"),
 		  lis                =   $(ul).find("li"),
-		  tamanhoLi          =   Math.round ( $(lis).first().width() ),
+		  tamanhoLi          =   Math.round ( $(lis).first().outerWidth() ),
 		  numeroLis          =   Math.round ( $(lis).length ),
 		  tamanhoUl          =   Math.round ( tamanhoLi * numeroLis ),
 		  controles          =   $(slider).find("div#controles"),
