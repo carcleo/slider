@@ -6,14 +6,14 @@ $(document).ready( function() {
 	
 	//cria dinamicamente elementos HTML
 	$("div.slider").append(
-	      '<div id="container">' + 
-		     '<div id="uls"></div>' + 
-		  '</div>' + 
-		  '<span id="title">Pausado</span>' + 
-		  '<div id="controles">' +
-		    '<button id="back"> < </button>' + 
-			'<button id="next"> > </button>' + 
-		  '</div>'
+		'<div id="container">'+
+			'<div id="uls"></div>'+
+		'</div>'+
+		'<span id="title">Pausado</span>'+
+		'<div id="controles">'+
+			'<button id="back"> < </button>'+
+			'<button id="next"> > </button>'+
+		'</div>'
 	);
 	
 	//cria as variáveis NÃO modificáveis;
@@ -40,50 +40,84 @@ $(document).ready( function() {
 	//determina a largura das ULs partindo do produto entre a largura de cada LI e a quantidade de LI's
 	$(ul).width(tamanhoUl);	
 	//fazendo um clone no final da da div de ULs
-	$(ul).clone().appendTo(uls);	
+	//$(ul).clone().appendTo(uls);	
 	
 	//necessário pois nesse momento a primeira UL está colada no seu container (div.uls). Nesse caso, jogo a div.uls uma LI para a esquerda.
-	$(uls).css("left" , -tamanhoLi ); 
+	//$(uls).css("left" , -tamanhoLi ); 
 	//após faço a compensação jogando a primeira UL para direita
-	$(".itens").css("left" , +tamanhoLi );
+	//$(".itens").css("left" , +tamanhoLi );
 	
 	//função avançar
 	function avancar () {
-		
-		$("ul.itens").each (function() {
-			
-			if ( Math.round ( $(this).position().left ) <= -Math.round ( $(ul).width() ) ) 
-				$(this).css({
-					"transition" : "none",
-					"left"       : "+=" + ( ( 2 * tamanhoUl ) - tamanhoLi )
-				}) ;
-			else 			
-				$(this).css({
-					"transition" : "all 1s ease",
-					"left"       : "-=" + tamanhoLi
-				}) ;
-			
+		$(controles).find("button").prop('disabled', true);
+		var primeiroLi = $("ul.itens li:first-child").clone();
+		$("ul.itens").css({
+			"transition" : "all 1s ease",
+			"margin-left" : "-"+tamanhoLi
 		});
+		setTimeout(function(){
+			$(controles).find("button").prop('disabled', false);
+		  }, 1000);
+		setTimeout(function(){
+			$("ul.itens li:first-child").remove();
+			primeiroLi.appendTo("ul.itens");
+			$("ul.itens").css({
+				"transition" : "none",
+				"margin-left" : 0
+			});
+		}, 1000);
+		
+		// $("ul.itens").each (function() {
+			
+		// 	if ( Math.round ( $(this).position().left ) <= -Math.round ( $(ul).width() ) ) 
+		// 		$(this).css({
+		// 			"transition" : "none",
+		// 			"left"       : "+=" + ( ( 2 * tamanhoUl ) - tamanhoLi )
+		// 		}) ;
+		// 	else 			
+		// 		$(this).css({
+		// 			"transition" : "all 1s ease",
+		// 			"left"       : "-=" + tamanhoLi
+		// 		}) ;
+			
+		// });
 		
 	}
 
 	//função voltar
 	function voltar () {
-		
-		$("ul.itens").each (function() {		
-			
-			if ( Math.round ( $(this).position().left ) >= Math.round ( $(container).width() ) ) 
-				$(this).css({
-					"transition" : "none",
-					"left"       : "-=" + ( ( 2 * tamanhoUl ) - tamanhoLi )
-				}) ;
-			else 			
-				$(this).css({
-					"transition" : "all 1s ease",
-					"left"       : "+=" + tamanhoLi
-				}) ;
-				
+		$(controles).find("button").prop('disabled', true);
+		var ultimoLi = $("ul.itens li:last-child").clone();
+		$("ul.itens li:last-child").remove();
+		ultimoLi.prependTo("ul.itens");
+		$("ul.itens").css({
+			"transition" : "none",
+			"margin-left" : "-"+tamanhoLi
 		});
+		setTimeout(function(){
+			$(controles).find("button").prop('disabled', false);
+		  }, 1000);
+		setTimeout(function(){
+			$("ul.itens").css({
+				"transition" : "all 1s ease",
+				"margin-left" : 0
+			});
+		}, 100);
+		
+		// $("ul.itens").each (function() {		
+			
+		// 	if ( Math.round ( $(this).position().left ) >= Math.round ( $(container).width() ) ) 
+		// 		$(this).css({
+		// 			"transition" : "none",
+		// 			"left"       : "-=" + ( ( 2 * tamanhoUl ) - tamanhoLi )
+		// 		}) ;
+		// 	else 			
+		// 		$(this).css({
+		// 			"transition" : "all 1s ease",
+		// 			"left"       : "+=" + tamanhoLi
+		// 		}) ;
+				
+		// });
 		
 	}
 
